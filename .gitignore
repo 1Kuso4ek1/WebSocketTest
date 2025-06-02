@@ -1,6 +1,5 @@
-build
-.cache
-.vscode
+*build*
+.*
 env
 src/Models/model.json
 config/config.json
