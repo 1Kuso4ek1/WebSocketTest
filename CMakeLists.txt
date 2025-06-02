@@ -11,8 +11,9 @@ set(JWT_BUILD_EXAMPLES OFF)
 set(OUTPUT_DIR ${CMAKE_BINARY_DIR})
 
 file(GLOB WSTEST_SOURCES "src/*.cpp" "src/*/*.cpp")
+list(FILTER WSTEST_SOURCES EXCLUDE REGEX "src/client.cpp")
 
-set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD 26)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 add_executable(
@@ -21,7 +22,14 @@ add_executable(
     ${WSTEST_SOURCES}
 )
 
+add_executable(
+    WebSocketClient
+
+    src/client.cpp
+)
+
 target_link_libraries(WebSocketTest drogon jwt-cpp)
+target_link_libraries(WebSocketClient drogon)
 
 include_directories(${CMAKE_SOURCE_DIR}/include/)
 

@@ -20,7 +20,7 @@ void WSController::handleNewMessage(
 )
 {
     if(messageType != WebSocketMessageType::Ping)
-        connection->sendJson(parseJson(message));
+        connection->sendJson(parseJson(message)["message"].asString());
 }
 
 void WSController::handleNewConnection(const HttpRequestPtr& req, const WebSocketConnectionPtr& connection)
